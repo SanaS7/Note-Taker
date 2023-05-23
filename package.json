@@ -4,12 +4,14 @@
   "description": "The Note-Taking Application is a user-friendly tool designed for small business owners to easily write, save, and organize notes. With a dedicated notes page, users can create new notes, save them with a click, and access existing notes effortlessly.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
+    "nodemon": "^2.0.22",
     "uuid": "^9.0.0"
   }
 }
