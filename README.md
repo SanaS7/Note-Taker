@@ -35,7 +35,10 @@ To run the Note Taker application locally, follow these steps:
 3. Use the application to write and save notes. Existing notes are listed in the left-hand column, and new notes can be entered in the right-hand column.
 
 ## Screenshot
-![Note Taker Logo](images/note-taker-logo.png)
+![Note Taker Logo](https://raw.githubusercontent.com/SanaS7/Note-Taker/tree/main/public/assets/images/image.png)
+
+## Video Tutorial
+![Note Taker Demo](https://raw.githubusercontent.com/SanaS7/Note-Taker/tree/main/public/assets/images/gif.gif)
 
 ## License
 
