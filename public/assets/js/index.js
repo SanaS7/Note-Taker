@@ -4,7 +4,11 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
+// Checking if the current page is the '/notes' page
+
 if (window.location.pathname === '/notes') {
+
+    // Getting references to HTML elements
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
@@ -12,19 +16,20 @@ if (window.location.pathname === '/notes') {
   noteList = document.querySelectorAll('.list-container .list-group');
 }
 
-// Show an element
+// Function to show an element
 const show = (elem) => {
   elem.style.display = 'inline';
 };
 
-// Hide an element
+// Function to hide an element
 const hide = (elem) => {
   elem.style.display = 'none';
 };
 
-// activeNote is used to keep track of the note in the textarea
+// Variable to keep track of the active note
 let activeNote = {};
 
+// Function to retrieve notes from the server
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
@@ -33,6 +38,7 @@ const getNotes = () =>
     },
   });
 
+// Function to save a note to the server
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -42,6 +48,7 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
+// Function to delete a note from the server
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
@@ -50,15 +57,18 @@ const deleteNote = (id) =>
     },
   });
 
+// Function to render the active note in the textarea
 const renderActiveNote = () => {
   hide(saveNoteBtn);
 
   if (activeNote.id) {
+    // Displaying the active note in read-only mode
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
   } else {
+    // Clearing the note fields for a new note
     noteTitle.removeAttribute('readonly');
     noteText.removeAttribute('readonly');
     noteTitle.value = '';
@@ -66,14 +76,16 @@ const renderActiveNote = () => {
   }
 };
 
+// Function to handle the save note button click
 const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(newNote).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
+  // Saving the new note to the server
+    saveNote(newNote).then(() => {
+    getAndRenderNotes();    // Fetching and rendering all notes from the server
+    renderActiveNote();     // Rendering the active note
   });
 };
 
@@ -93,12 +105,14 @@ const handleNoteDelete = (e) => {
   });
 };
 
+// Function to handle the note view
 const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
 };
 
+// Function to handle the new note view
 const handleNewNoteView = (e) => {
   activeNote = {};
   renderActiveNote();
